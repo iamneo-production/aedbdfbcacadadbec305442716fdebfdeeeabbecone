@@ -1,0 +1,27 @@
+@model BookStoreApp.Models.Option
+
+@{
+    ViewData["Title"] = "Add Option";
+}
+
+<h2>Add Loan Option Details</h2>
+
+<form asp-controller="Option" asp-action="AddOption" method="post">
+    <div class="form-group">
+        <label for="LoanType">Loan Type</label>
+        <input type="text" class="form-control" id="LoanType" name="LoanType" required>
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" class="form-control" id="Description" name="Description" required>
+    </div>
+    <div class="form-group">
+        <label for="InterestRate">Interest Rate</label>%
+        <input type="number" class="form-control" id="InterestRate" name="InterestRate" required>
+    </div>
+     <div class="form-group">
+        <label for="MaximumAmount">Maximum Amount</label>
+        <input type="number" class="form-control" id="MaximumAmount" name="MaximumAmount" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Loan Option</button>
+</form>

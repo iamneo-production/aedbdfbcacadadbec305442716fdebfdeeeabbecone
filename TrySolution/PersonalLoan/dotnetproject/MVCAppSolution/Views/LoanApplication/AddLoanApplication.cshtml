@@ -1,0 +1,69 @@
+@model BookStoreApp.Models.LoanApplication
+
+@{
+    ViewData["Title"] = "Add Loan Application";
+}
+
+<h2>Apply for Personal Loan </h2>
+
+<form asp-controller="LoanApplication" asp-action="AddLoanApplication" method="post">
+    <div class="form-group">
+        <label for="Name">Loan Applicant Name</label>
+        <input type="text" class="form-control" id="Name" name="Name" required>
+    </div>
+    <div class="form-group">
+        <label for="LoanType">Loan Type</label>
+        <select class="form-control" id="LoanType" name="LoanType" required>
+            <option value="">Select Loan Type</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="RequestedAmount">Requested Amount</label>
+        <input type="numner" class="form-control" id="RequestedAmount" name="RequestedAmount" required>
+    </div>
+    <div class="form-group">
+        <label for="SubmissionDate">Submission Date</label>
+        <input type="date" class="form-control" id="SubmissionDate" name="SubmissionDate" required>
+    </div>
+
+    <div class="form-group">
+        <label for="EmploymentStatus">Employment Status</label>
+        <input type="text" class="form-control" id="EmploymentStatus" name="EmploymentStatus" required>
+    </div>
+    <div class="form-group">
+        <label for="Income">Income</label>
+        <input type="number" class="form-control" id="Income" name="Income" required>
+    </div>
+    <div class="form-group">
+        <label for="CreditScore">Credit Score</label>
+        <input type="number" class="form-control" id="CreditScore" name="CreditScore" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add LoanApplication</button>
+</form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Define a function to fetch job titles and populate the dropdown
+        function populateFreelancerNames() {
+            $.ajax({
+                url: 'https://localhost:7266/api/Option/LoanTypes', // Replace with the actual URL of your Web API endpoint
+                method: 'GET',
+                success: function (data) {
+                    var dropdown = $('#LoanType');
+                    dropdown.empty();
+                    dropdown.append($('<option>').val('').text('Select Loan Types'));
+                    $.each(data, function (key, entry) {
+                        dropdown.append($('<option>').val(entry).text(entry));
+                    });
+                },
+                error: function () {
+                    console.error('Error fetching LoanType from the API.');
+                }
+            });
+        }
+
+        // Call the function to populate the dropdown when the page loads
+        populateFreelancerNames();
+    });
+</script>
